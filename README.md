@@ -1,4 +1,4 @@
-# SecureData DApp on Stellar Soroban
+# ValidFi DApp on Stellar Soroban
 
 A decentralized identity and data verification platform built on the Stellar Soroban Smart Contract Platform. SecureData enables users to securely store, verify, and share their identity documents using blockchain technology, zero-knowledge proofs, and AI-powered verification.
 
