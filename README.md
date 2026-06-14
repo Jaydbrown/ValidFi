@@ -1,90 +1,92 @@
 # ValidFi DApp on Stellar Soroban
 
-A decentralized identity and data verification platform built on the Stellar Soroban Smart Contract Platform. SecureData enables users to securely store, verify, and share their identity documents using blockchain technology, zero-knowledge proofs, and AI-powered verification.
+A decentralized health credential platform built on the Stellar Soroban Smart Contract Platform. ValidFi issues tamper-proof, encrypted health credentials and enables users to prove vaccination status with zero-knowledge proofs — no names, no birthdates, and no medical history exposed to anyone but you.
 
 ## 🌟 Features
 
 ### Core Capabilities
-- **Self-Sovereign Identity Management**: Users have full control over their digital identities and personal data
-- **AI-Assisted Document Verification**: Automated document analysis using Groq AI (Llama 4, DeepSeek R1, Mixtral)
-- **Privacy-Preserving zk Proofs**: Zero-knowledge proofs enable verification without revealing sensitive data
+- **Tamper-Proof Health Credentials**: Encrypted vaccination records stored on-chain with cryptographic verification
+- **Privacy-Preserving zk Proofs**: Prove vaccination status without revealing names, birthdates, or medical history
+- **Zero-Knowledge Vaccination Verification**: Share proof of vaccination without exposing any personal health information
 - **Wallet-Based Authentication**: Secure authentication using Stellar wallets (Freighter, Albedo, LOBSTR)
-- **Decentralized Storage**: Documents stored on IPFS with Pinata integration
-- **User-Controlled Access Permissions**: Granular control over who can access your data
-- **Instant Credential Sharing**: Share verified credentials with third parties securely
-- **Tamper-Proof Verification Records**: All verification records stored on-chain for immutability
+- **Encrypted Health Data Storage**: Medical credentials encrypted and stored on IPFS with Pinata integration
+- **User-Controlled Access**: Complete control over who can verify your health credentials
+- **Instant Credential Verification**: Share vaccination proof with venues, employers, or travel authorities securely
+- **Immutable Health Records**: All credential issuances and verifications recorded on-chain for auditability
 
 ### Advanced Features
-- **Time-Limited Access**: Set expiration dates for shared documents
-- **Revocable Access**: Revoke access to shared documents at any time
-- **Risk Assessment**: AI-powered risk scoring for document verification
-- **Multi-Wallet Support**: Support for multiple Stellar wallet providers
-- **Encrypted Storage**: All documents encrypted before storage
-- **Audit Trail**: Complete audit trail of all data access and sharing events
+- **Selective Disclosure**: Choose exactly what information to reveal in each verification
+- **Time-Limited Proofs**: Set expiration dates for vaccination status proofs
+- **Revocable Credentials**: Revoke access to your health credentials at any time
+- **Multi-Vaccine Support**: Support for multiple vaccination types and boosters
+- **Batch Verification**: Verify multiple credentials simultaneously for venues and organizations
+- **Health Authority Integration**: Integration with certified health authorities for credential issuance
+- **Cross-Border Recognition**: Standardized format for international travel and compliance
 
 ## 🏗️ Architecture
 
 ### On-Chain Components (Soroban Smart Contracts)
 
-#### Identity Registry Contract
-- Manages user digital identities
-- Stores identity metadata and verification status
-- Links wallet addresses to identity records
-- Enables identity lookup and verification
+#### Health Credential Registry Contract
+- Manages vaccination credentials and health records
+- Stores encrypted credential metadata and verification status
+- Links wallet addresses to health credential records
+- Enables credential lookup and verification
 
-#### Verification Contract
-- Handles document verification requests
-- Validates zero-knowledge proofs
+#### Vaccination Verification Contract
+- Handles vaccination status verification requests
+- Validates zero-knowledge proofs for vaccination status
 - Stores verification results on-chain
-- Manages verification status updates
+- Manages credential status updates and revocations
 
 #### Access Control Contract
-- Manages permissions and access rights
-- Controls who can access specific data
-- Implements time-based access controls
-- Handles access revocation
+- Manages permissions for health credential access
+- Controls who can verify vaccination status
+- Implements time-based access controls for proofs
+- Handles credential access revocation
 
-#### Data Sharing Contract
-- Controls document sharing with encryption
-- Manages sharing permissions and expiration
-- Tracks access logs
-- Enables secure data transfer
+#### Health Authority Contract
+- Manages authorized health authority issuers
+- Validates credential issuance from certified authorities
+- Stores health authority public keys and signatures
+- Enables credential authority verification
 
 ### Off-Chain Components
 
 #### Backend (NestJS)
-- RESTful API for frontend communication
-- Business logic for identity, verification, and data sharing
+- RESTful API for health credential management
+- Business logic for vaccination verification and credential sharing
 - Integration with external services (IPFS, AI, Soroban)
 - Authentication and authorization middleware
 - Database management with PostgreSQL
 - Caching with Redis
 
 #### Frontend (Next.js 15)
-- Modern, responsive user interface
+- Modern, responsive health credential interface
 - Wallet connection and management
-- Identity vault for document management
-- Verification center for tracking status
-- Secure sharing interface
+- Health credential vault for vaccination records
+- Verification center for tracking vaccination status
+- Secure proof sharing interface
 - Real-time updates and notifications
 
 #### Storage Layer (IPFS)
-- Decentralized document storage
+- Decentralized health credential storage
 - Pinata gateway for reliable access
 - Content-addressed storage
 - Automatic deduplication
+- Encrypted medical data storage
 
 #### AI Layer (Groq)
-- Document analysis and verification
-- Risk assessment scoring
-- Fraud detection
+- Health credential document analysis
+- Vaccination record verification
+- Fraud detection for health credentials
 - Automated compliance checks
 
 #### Zero-Knowledge Infrastructure
-- Circom for circuit creation
+- Circom for vaccination proof circuits
 - SnarkJS for proof generation
 - Groth16 proving system
-- Privacy-preserving verification
+- Privacy-preserving vaccination verification
 
 ## 🛠️ Tech Stack
 
@@ -132,12 +134,12 @@ GuardZero/
 ├── backend/                   # NestJS backend
 │   ├── src/
 │   │   ├── auth/            # Authentication module
-│   │   ├── data-sharing/    # Data sharing module
-│   │   ├── identity/        # Identity module
+│   │   ├── data-sharing/    # Credential sharing module
+│   │   ├── health-credential/ # Health credential module
 │   │   ├── ipfs/            # IPFS integration
-│   │   ├── ai/              # AI service
+│   │   ├── ai/              # AI service for health verification
 │   │   ├── soroban/         # Soroban integration
-│   │   └── verification/    # Verification module
+│   │   └── verification/    # Vaccination verification module
 │   ├── .env.example         # Environment variables template
 │   └── package.json         # Backend dependencies
 ├── frontend/                  # Next.js 15 frontend
@@ -265,30 +267,31 @@ NEXT_PUBLIC_API_URL=http://localhost:3001/api/v1
 3. Approve the connection request in your wallet
 4. Your wallet address will be displayed
 
-### Managing Your Identity
+### Managing Health Credentials
 
-1. Navigate to the "Identity Vault" tab
-2. Click "Select File" to upload a document
-3. The document will be encrypted and uploaded to IPFS
+1. Navigate to the "Health Credential Vault" tab
+2. Click "Upload Credential" to add vaccination records
+3. The credential will be encrypted and uploaded to IPFS
 4. The hash will be registered on-chain
 5. Track verification status in the "Verification Center"
 
-### Sharing Documents
+### Proving Vaccination Status
+
+1. Navigate to the "Vaccination Proof" tab
+2. Select the vaccination credential you want to prove
+3. Choose what information to disclose (optional)
+4. Generate a zero-knowledge proof of vaccination status
+5. Share the proof with venues, employers, or travel authorities
+6. No personal health information is revealed
+
+### Sharing Credentials
 
 1. Navigate to the "Secure Sharing" tab
-2. Enter the recipient's wallet address
-3. Select the document you want to share
+2. Enter the recipient's wallet address (venue, employer, etc.)
+3. Select the vaccination credential you want to share
 4. Set the access duration
-5. Click "Share Document"
+5. Click "Share Credential"
 6. The recipient will receive access for the specified duration
-
-### Verifying Documents
-
-1. Documents are automatically analyzed by AI
-2. Risk assessment scores are generated
-3. Zero-knowledge proofs are created for verification
-4. Verification results are stored on-chain
-5. Track status in the "Verification Center"
 
 ## 🔧 API Documentation
 
@@ -303,43 +306,49 @@ Verify wallet signature
 #### GET /api/v1/auth/profile
 Get user profile (requires authentication)
 
-### Identity Endpoints
+### Health Credential Endpoints
 
-#### POST /api/v1/identity
-Create new identity
+#### POST /api/v1/health-credential
+Create new health credential
 
-#### GET /api/v1/identity/:id
-Get identity by ID
+#### GET /api/v1/health-credential/:id
+Get health credential by ID
 
-#### PUT /api/v1/identity/:id
-Update identity
+#### PUT /api/v1/health-credential/:id
+Update health credential
 
-#### DELETE /api/v1/identity/:id
-Delete identity
+#### DELETE /api/v1/health-credential/:id
+Delete health credential
 
-### Verification Endpoints
+#### GET /api/v1/health-credential
+List all health credentials for user
 
-#### POST /api/v1/verification
-Submit document for verification
+### Vaccination Verification Endpoints
 
-#### GET /api/v1/verification/:id
-Get verification status
+#### POST /api/v1/verification/vaccination
+Submit vaccination credential for verification
 
-#### GET /api/v1/verification
-List all verifications
+#### GET /api/v1/verification/vaccination/:id
+Get vaccination verification status
 
-### Data Sharing Endpoints
+#### POST /api/v1/verification/vaccination/proof
+Generate zero-knowledge proof of vaccination status
 
-#### POST /api/v1/data-sharing
-Share data with another user
+#### GET /api/v1/verification/vaccination
+List all vaccination verifications
 
-#### GET /api/v1/data-sharing/:id
+### Credential Sharing Endpoints
+
+#### POST /api/v1/credential-sharing
+Share health credential with another user
+
+#### GET /api/v1/credential-sharing/:id
 Get sharing details
 
-#### PUT /api/v1/data-sharing/:id/revoke
+#### PUT /api/v1/credential-sharing/:id/revoke
 Revoke shared access
 
-#### PUT /api/v1/data-sharing/:id/extend
+#### PUT /api/v1/credential-sharing/:id/extend
 Extend sharing duration
 
 ## 🧪 Testing
@@ -448,16 +457,16 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - ✅ AI-powered verification
 
 ### Phase 2 (In Progress)
-- 🔄 Advanced zk-proof circuits
-- 🔄 Mobile app development
-- 🔄 Multi-chain support
-- 🔄 Enhanced security features
+- 🔄 Health credential-specific zk-proof circuits
+- 🔄 Vaccination verification workflows
+- 🔄 Health authority integration
+- 🔄 Cross-border compliance features
 
 ### Phase 3 (Planned)
-- 📋 Enterprise features
-- 📋 Compliance certifications
-- 📋 Advanced analytics
-- 📋 Community governance
+- 📋 Mobile app for health credentials
+- 📋 Multi-vaccine support
+- 📋 Travel verification integration
+- 📋 Enterprise health credential management
 
 ---
 
